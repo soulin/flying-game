@@ -8,7 +8,7 @@
 
 #import "flying_gameAppDelegate.h"
 #import "cocos2d.h"
-#import "HelloWorldScene.h"
+#import "GameScene.h"
 
 @implementation flying_gameAppDelegate
 
@@ -36,9 +36,8 @@
 	
 	// Sets landscape mode
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-	
 	// Turn on display FPS
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
 	
 	// Turn on multiple touches
 	EAGLView *view = [director openGLView];
@@ -50,7 +49,7 @@
 	[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGBA8888];	
 	
 		
-	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
+	[[CCDirector sharedDirector] runWithScene: [GameScene scene]];
 }
 
 
