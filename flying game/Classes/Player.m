@@ -11,5 +11,14 @@
 
 @implementation Player
 
+- (id)init{
+	if((self=[super init])){
+		self = [CCSprite spriteWithFile:@"playerPlane.png"];
+		}
+	return self;
+}
+
+-(void)leftButtonPressed{
+}
 
 @end

@@ -8,7 +8,7 @@
 
 // Import the interfaces
 #import "GameScene.h"
-#import "Player.h"
+
 
 // HelloWorld implementation
 @implementation GameScene
@@ -36,12 +36,23 @@
 	if( (self=[super init] )) {
 		CCSprite * background = [CCSprite spriteWithFile:@"background.png"];
 		
-		[self addChild:background];
+		[self addChild:background z:-1];
 		
-		Player * player = [CCSprite spriteWithFile:@"playerPlane.png"];
-		[self addChild:player];
+		Player * thePlayer = [[Player alloc]init];
+		
+		[thePlayer leftButtonPressed];
+		[self addChild:thePlayer];
 		CGSize windowSize = [[CCDirector sharedDirector] winSize];
-		[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
+		[thePlayer setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
+		
+//		CCMenuItemImage *left = [CCMenuItemImage itemFromNormalImage:@"left.png" selectedImage:@"leftOn.png" target:player selector:@selector(leftButton)];
+//		CCMenuItemImage *right = [CCMenuItemImage itemFromNormalImage:@"right.png" selectedImage:@"rightOn.png" target:player selector:@selector(rightButton)];
+//		
+//		[self addChild:left];
+//		[self addChild:right];
+//		
+//		[left setPosition:CGPointMake(30, 40)];
+//		[right setPosition:CGPointMake(60, 40)];
 	}
 	return self;
 }

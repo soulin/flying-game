@@ -12,6 +12,10 @@
 		34E1A5B916A1DCBC00C524F8 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E1A5B816A1DCBC00C524F8 /* Player.m */; };
 		34E1A5C816A1E13800C524F8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A5C616A1E13800C524F8 /* background.png */; };
 		34E1A5C916A1E13800C524F8 /* playerPlane.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A5C716A1E13800C524F8 /* playerPlane.png */; };
+		34E1A66016A1EE5C00C524F8 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A65C16A1EE5C00C524F8 /* left.png */; };
+		34E1A66116A1EE5C00C524F8 /* leftOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A65D16A1EE5C00C524F8 /* leftOn.png */; };
+		34E1A66216A1EE5C00C524F8 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A65E16A1EE5C00C524F8 /* right.png */; };
+		34E1A66316A1EE5C00C524F8 /* rightOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A65F16A1EE5C00C524F8 /* rightOn.png */; };
 		504DFBCE10AF12E9006D82FE /* CLScoreServerPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */; };
 		504DFBCF10AF12E9006D82FE /* CLScoreServerPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */; };
 		504DFBD010AF12E9006D82FE /* CLScoreServerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBCA10AF12E9006D82FE /* CLScoreServerRequest.h */; };
@@ -248,6 +252,10 @@
 		34E1A5B816A1DCBC00C524F8 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		34E1A5C616A1E13800C524F8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		34E1A5C716A1E13800C524F8 /* playerPlane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerPlane.png; sourceTree = "<group>"; };
+		34E1A65C16A1EE5C00C524F8 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
+		34E1A65D16A1EE5C00C524F8 /* leftOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftOn.png; sourceTree = "<group>"; };
+		34E1A65E16A1EE5C00C524F8 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		34E1A65F16A1EE5C00C524F8 /* rightOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightOn.png; sourceTree = "<group>"; };
 		504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScoreServerPost.h; sourceTree = "<group>"; };
 		504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLScoreServerPost.m; sourceTree = "<group>"; };
 		504DFBCA10AF12E9006D82FE /* CLScoreServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScoreServerRequest.h; sourceTree = "<group>"; };
@@ -836,6 +844,10 @@
 				50F414ED1069373D002A0D5E /* fps_images.png */,
 				50F414EE1069373D002A0D5E /* Icon.png */,
 				50F414EF1069373D002A0D5E /* Info.plist */,
+				34E1A65C16A1EE5C00C524F8 /* left.png */,
+				34E1A65D16A1EE5C00C524F8 /* leftOn.png */,
+				34E1A65E16A1EE5C00C524F8 /* right.png */,
+				34E1A65F16A1EE5C00C524F8 /* rightOn.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1026,6 +1038,10 @@
 				50F414F21069373D002A0D5E /* Icon.png in Resources */,
 				34E1A5C816A1E13800C524F8 /* background.png in Resources */,
 				34E1A5C916A1E13800C524F8 /* playerPlane.png in Resources */,
+				34E1A66016A1EE5C00C524F8 /* left.png in Resources */,
+				34E1A66116A1EE5C00C524F8 /* leftOn.png in Resources */,
+				34E1A66216A1EE5C00C524F8 /* right.png in Resources */,
+				34E1A66316A1EE5C00C524F8 /* rightOn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
