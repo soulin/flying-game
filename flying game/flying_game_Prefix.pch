@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'flying game' target in the 'flying game' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
