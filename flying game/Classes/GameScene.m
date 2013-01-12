@@ -8,6 +8,7 @@
 
 // Import the interfaces
 #import "GameScene.h"
+#import "Player.h"
 
 // HelloWorld implementation
 @implementation GameScene
@@ -33,7 +34,14 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init] )) {
+		CCSprite * background = [CCSprite spriteWithFile:@"background.png"];
 		
+		[self addChild:background];
+		
+		Player * player = [CCSprite spriteWithFile:@"playerPlane.png"];
+		[self addChild:player];
+		CGSize windowSize = [[CCDirector sharedDirector] winSize];
+		[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
 	}
 	return self;
 }
