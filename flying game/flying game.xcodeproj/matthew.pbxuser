@@ -3,16 +3,16 @@
 	1D6058900D05DD3D006BFB54 /* flying game */ = {
 		activeExec = 0;
 		executables = (
-			34E1A55916A1D4EE00C524F8 /* flying game */,
+			34E1A56916A1D71300C524F8 /* flying game */,
 		);
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
-		activeExecutable = 34E1A55916A1D4EE00C524F8 /* flying game */;
+		activeExecutable = 34E1A56916A1D71300C524F8 /* flying game */;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* flying game */;
-		codeSenseManager = 34E1A56516A1D4F400C524F8 /* Code sense */;
+		codeSenseManager = 34E1A57B16A1D71700C524F8 /* Code sense */;
 		executables = (
-			34E1A55916A1D4EE00C524F8 /* flying game */,
+			34E1A56916A1D71300C524F8 /* flying game */,
 		);
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
@@ -37,14 +37,14 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 379704558;
-			PBXWorkspaceStateSaveDate = 379704558;
+			PBXPerProjectTemplateStateSaveDate = 379705107;
+			PBXWorkspaceStateSaveDate = 379705107;
 		};
-		sourceControlManager = 34E1A56416A1D4F400C524F8 /* Source Control */;
+		sourceControlManager = 34E1A57A16A1D71700C524F8 /* Source Control */;
 		userBuildSettings = {
 		};
 	};
-	34E1A55916A1D4EE00C524F8 /* flying game */ = {
+	34E1A56916A1D71300C524F8 /* flying game */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
 		);
@@ -71,7 +71,7 @@
 		sourceDirectories = (
 		);
 	};
-	34E1A56416A1D4F400C524F8 /* Source Control */ = {
+	34E1A57A16A1D71700C524F8 /* Source Control */ = {
 		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
 		isSCMEnabled = 0;
@@ -81,8 +81,11 @@
 			};
 		};
 	};
-	34E1A56516A1D4F400C524F8 /* Code sense */ = {
+	34E1A57B16A1D71700C524F8 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	506EE05D10304ED200A389B3 /* cocos2d libraries */ = {
+		activeExec = 0;
 	};
 }

@@ -3,16 +3,15 @@
 //  flying game
 //
 //  Created by Matthew Caswell on 1/12/13.
-//  Copyright 2013 __MyCompanyName__. All rights reserved.
+//  Copyright __MyCompanyName__ 2013. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface flying_gameAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
+	UIWindow *window;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) UIWindow *window;
 
 @end
-

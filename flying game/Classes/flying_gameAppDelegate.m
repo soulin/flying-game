@@ -3,81 +3,89 @@
 //  flying game
 //
 //  Created by Matthew Caswell on 1/12/13.
-//  Copyright 2013 __MyCompanyName__. All rights reserved.
+//  Copyright __MyCompanyName__ 2013. All rights reserved.
 //
 
 #import "flying_gameAppDelegate.h"
+#import "cocos2d.h"
+#import "HelloWorldScene.h"
 
 @implementation flying_gameAppDelegate
 
 @synthesize window;
 
-
-#pragma mark -
-#pragma mark Application lifecycle
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    // Override point for customization after application launch.
-    
-    [window makeKeyAndVisible];
-    
-    return YES;
+- (void) applicationDidFinishLaunching:(UIApplication*)application
+{
+	// CC_DIRECTOR_INIT()
+	//
+	// 1. Initializes an EAGLView with 0-bit depth format, and RGB565 render buffer
+	// 2. EAGLView multiple touches: disabled
+	// 3. creates a UIWindow, and assign it to the "window" var (it must already be declared)
+	// 4. Parents EAGLView to the newly created window
+	// 5. Creates Display Link Director
+	// 5a. If it fails, it will use an NSTimer director
+	// 6. It will try to run at 60 FPS
+	// 7. Display FPS: NO
+	// 8. Device orientation: Portrait
+	// 9. Connects the director to the EAGLView
+	//
+	CC_DIRECTOR_INIT();
+	
+	// Obtain the shared director in order to...
+	CCDirector *director = [CCDirector sharedDirector];
+	
+	// Sets landscape mode
+	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+	
+	// Turn on display FPS
+	[director setDisplayFPS:YES];
+	
+	// Turn on multiple touches
+	EAGLView *view = [director openGLView];
+	[view setMultipleTouchEnabled:YES];
+	
+	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
+	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
+	// You can change anytime.
+	[CCTexture2D setDefaultAlphaPixelFormat:kTexture2DPixelFormat_RGBA8888];	
+	
+		
+	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
 }
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
+	[[CCDirector sharedDirector] pause];
 }
-
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
-     */
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    /*
-     Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
-     */
-}
-
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
+	[[CCDirector sharedDirector] resume];
 }
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    /*
-     Called when the application is about to terminate.
-     See also applicationDidEnterBackground:.
-     */
-}
-
-
-#pragma mark -
-#pragma mark Memory management
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    /*
-     Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
-     */
+	[[CCDirector sharedDirector] purgeCachedData];
 }
 
+-(void) applicationDidEnterBackground:(UIApplication*)application {
+	[[CCDirector sharedDirector] stopAnimation];
+}
+
+-(void) applicationWillEnterForeground:(UIApplication*)application {
+	[[CCDirector sharedDirector] startAnimation];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+	[[CCDirector sharedDirector] end];
+}
+
+- (void)applicationSignificantTimeChange:(UIApplication *)application {
+	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
 
 - (void)dealloc {
-    [window release];
-    [super dealloc];
+	[[CCDirector sharedDirector] release];
+	[window release];
+	[super dealloc];
 }
-
 
 @end
