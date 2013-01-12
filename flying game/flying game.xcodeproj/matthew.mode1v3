@@ -267,14 +267,16 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>506EDAA3102F461B00A389B3</string>
 								<string>2D500B1D0D5A766B00DBA0E3</string>
+								<string>50F414EB1069373D002A0D5E</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
-									<integer>4</integer>
+									<integer>11</integer>
+									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -298,7 +300,7 @@
 							<real>270</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>0 59 1680 969 0 0 1680 1028 </string>
+						<string>0 59 1308 969 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -328,15 +330,19 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>34E1A5B616A1DBA800C524F8</string>
+										<string>34E1A63C16A1E6D200C524F8</string>
 										<key>history</key>
 										<array>
 											<string>34E1A58B16A1D94D00C524F8</string>
 											<string>34E1A58C16A1D94D00C524F8</string>
-											<string>34E1A58E16A1D94D00C524F8</string>
-											<string>34E1A5B316A1DBA800C524F8</string>
-											<string>34E1A5B416A1DBA800C524F8</string>
-											<string>34E1A5B516A1DBA800C524F8</string>
+											<string>34E1A5BE16A1E11400C524F8</string>
+											<string>34E1A5BF16A1E11400C524F8</string>
+											<string>34E1A5D416A1E18500C524F8</string>
+											<string>34E1A5E016A1E2A500C524F8</string>
+											<string>34E1A63816A1E6D200C524F8</string>
+											<string>34E1A63916A1E6D200C524F8</string>
+											<string>34E1A63A16A1E6D200C524F8</string>
+											<string>34E1A63B16A1E6D200C524F8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -348,9 +354,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1388, 742}}</string>
+								<string>{{0, 0}, {1016, 742}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 59 1680 969 0 0 1680 1028 </string>
+								<string>0 59 1308 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -368,9 +374,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 747}, {1388, 181}}</string>
+								<string>{{0, 747}, {1016, 181}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 59 1680 969 0 0 1680 1028 </string>
+								<string>0 59 1308 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -379,7 +385,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>1388pt</string>
+					<string>1016pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -534,13 +540,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>34E1A61716A1E3ED00C524F8</string>
+		<string>34E1A61016A1E3AA00C524F8</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>34E1A57816A1D71700C524F8</string>
 		<string>/Users/matthew/flying-game/flying game/flying game.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 59 1680 969 0 0 1680 1028 </string>
+	<string>0 59 1308 969 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
