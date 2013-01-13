@@ -11,11 +11,22 @@
 
 @implementation HUDbutton
 
-@synthesize releaseMethod;
+@synthesize player;
+@synthesize direction;
+
+-(void)selected{
+	[super selected];
+	if (direction == @"left") {
+		[player leftButtonPressed];
+	} else {
+		[player rightButtonPressed];
+	}
+
+}
 
 -(void)unselected {
 	[super unselected];
-	[releaseMethod invoke];
+	[player directionButtonReleased];
 }
 
 @end
