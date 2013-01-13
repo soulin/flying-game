@@ -44,14 +44,19 @@
 		
 		left = [HUDbutton itemFromNormalImage:@"leftOn.png" selectedImage:@"left.png" target:player selector:@selector(leftButtonPressed)];
 		right = [HUDbutton itemFromNormalImage:@"rightOn.png" selectedImage:@"right.png" target:player selector:@selector(rightButtonPressed)];
+		thruster = [HUDbutton itemFromNormalImage:@"Thrust.png" selectedImage:@"Thrust.png" target:player selector:@selector(thrusterPressed)];
+		
 		[left setPlayer:player];
 		[right setPlayer:player];
+		[thruster setPlayer:player];
 		[left setDirection:@"left"];
 		[right setDirection:@"right"];
+		[thruster setDirection:@"thruster"];
 		[left setPosition:CGPointMake(30, 40)];
 		[right setPosition:CGPointMake(94, 40)];
+		[thruster setPosition:CGPointMake(415, 40)];
 		
-		menu = [CCMenu menuWithItems:left,right,nil];
+		menu = [CCMenu menuWithItems:left,right,thruster,nil];
 		[menu setIsTouchUp:YES];
 		[menu setPosition:CGPointMake(25, 0)];
 		[self addChild:menu z:1];

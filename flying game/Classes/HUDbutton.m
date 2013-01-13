@@ -18,15 +18,20 @@
 	[super selected];
 	if (direction == @"left") {
 		[player leftButtonPressed];
-	} else {
+	} else if (direction == @"right") {
 		[player rightButtonPressed];
+	} else if (direction == @"thruster") {
+		[player thrusterPressed];
 	}
-
+	
 }
 
 -(void)unselected {
 	[super unselected];
-	[player directionButtonReleased];
+	if (direction == @"right" || direction == @"left")
+		[player directionButtonReleased];
+	else
+		[player thrusterReleased];
 }
 
 @end

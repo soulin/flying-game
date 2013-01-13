@@ -18,6 +18,7 @@
 	Player * player;
 	HUDbutton * left;
 	HUDbutton * right;
+	HUDbutton * thruster;
 	CCMenu * menu;
 }
 
