@@ -1,5 +1,5 @@
 //
-//  Player.h
+//  HUDbutton.h
 //  flying game
 //
 //  Created by Matthew Caswell on 1/12/13.
@@ -9,14 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Player : CCSprite {
-	float playerRotation;
+@interface HUDbutton : CCMenuItemImage {
+	NSInvocation * releaseMethod;
 }
 
--(void)leftButtonPressed;
--(void)rightButtonPressed;
--(void)directionButtonReleased;
-
--(void)update:(NSTimeInterval)delta;
+@property(nonatomic,retain)NSInvocation * releaseMethod;
 
 @end

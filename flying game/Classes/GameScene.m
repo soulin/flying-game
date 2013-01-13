@@ -35,24 +35,24 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init] )) {
 		CCSprite * background = [CCSprite spriteWithFile:@"background.png"];
-		
 		[self addChild:background z:-1];
 		
-		Player * thePlayer = [[Player alloc]init];
-		
-		[thePlayer leftButtonPressed];
-		[self addChild:thePlayer];
+		Player * thePlayer = [Player spriteWithFile:@"playerPlane.png"];
+		[self addChild:thePlayer z:0];
 		CGSize windowSize = [[CCDirector sharedDirector] winSize];
 		[thePlayer setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
 		
-//		CCMenuItemImage *left = [CCMenuItemImage itemFromNormalImage:@"left.png" selectedImage:@"leftOn.png" target:player selector:@selector(leftButton)];
-//		CCMenuItemImage *right = [CCMenuItemImage itemFromNormalImage:@"right.png" selectedImage:@"rightOn.png" target:player selector:@selector(rightButton)];
-//		
-//		[self addChild:left];
-//		[self addChild:right];
-//		
-//		[left setPosition:CGPointMake(30, 40)];
-//		[right setPosition:CGPointMake(60, 40)];
+		HUDbutton * left = [HUDbutton itemFromNormalImage:@"leftOn.png" selectedImage:@"left.png" target:thePlayer selector:@selector(leftButtonPressed)];
+		HUDbutton * right = [HUDbutton itemFromNormalImage:@"rightOn.png" selectedImage:@"right.png" target:thePlayer selector:@selector(rightButtonPressed)];
+		
+		//NSInvocation releaseInvocation = [NSInvocation i
+		
+		[left setPosition:CGPointMake(30, 40)];
+		[right setPosition:CGPointMake(100, 40)];
+		
+		CCMenu * controls = [CCMenu menuWithItems:left,right,nil];
+		[controls setPosition:CGPointMake(25, 0)];
+		[self addChild:controls z:1];
 	}
 	return self;
 }

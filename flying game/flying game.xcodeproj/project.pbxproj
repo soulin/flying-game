@@ -16,6 +16,7 @@
 		34E1A66116A1EE5C00C524F8 /* leftOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A65D16A1EE5C00C524F8 /* leftOn.png */; };
 		34E1A66216A1EE5C00C524F8 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A65E16A1EE5C00C524F8 /* right.png */; };
 		34E1A66316A1EE5C00C524F8 /* rightOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A65F16A1EE5C00C524F8 /* rightOn.png */; };
+		34F0962F16A23FEA0069C0E5 /* HUDbutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 34F0962E16A23FEA0069C0E5 /* HUDbutton.m */; };
 		504DFBCE10AF12E9006D82FE /* CLScoreServerPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */; };
 		504DFBCF10AF12E9006D82FE /* CLScoreServerPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */; };
 		504DFBD010AF12E9006D82FE /* CLScoreServerRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 504DFBCA10AF12E9006D82FE /* CLScoreServerRequest.h */; };
@@ -256,6 +257,8 @@
 		34E1A65D16A1EE5C00C524F8 /* leftOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftOn.png; sourceTree = "<group>"; };
 		34E1A65E16A1EE5C00C524F8 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		34E1A65F16A1EE5C00C524F8 /* rightOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightOn.png; sourceTree = "<group>"; };
+		34F0962D16A23FEA0069C0E5 /* HUDbutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDbutton.h; sourceTree = "<group>"; };
+		34F0962E16A23FEA0069C0E5 /* HUDbutton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDbutton.m; sourceTree = "<group>"; };
 		504DFBC810AF12E9006D82FE /* CLScoreServerPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScoreServerPost.h; sourceTree = "<group>"; };
 		504DFBC910AF12E9006D82FE /* CLScoreServerPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLScoreServerPost.m; sourceTree = "<group>"; };
 		504DFBCA10AF12E9006D82FE /* CLScoreServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLScoreServerRequest.h; sourceTree = "<group>"; };
@@ -562,6 +565,8 @@
 				1F3B9A2B0EF2145700286867 /* flying_gameAppDelegate.m */,
 				34E1A5B716A1DCBC00C524F8 /* Player.h */,
 				34E1A5B816A1DCBC00C524F8 /* Player.m */,
+				34F0962D16A23FEA0069C0E5 /* HUDbutton.h */,
+				34F0962E16A23FEA0069C0E5 /* HUDbutton.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1056,6 +1061,7 @@
 				1F3B9A2D0EF2145700286867 /* flying_gameAppDelegate.m in Sources */,
 				506EDC31102F528A00A389B3 /* GameScene.m in Sources */,
 				34E1A5B916A1DCBC00C524F8 /* Player.m in Sources */,
+				34F0962F16A23FEA0069C0E5 /* HUDbutton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

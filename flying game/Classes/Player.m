@@ -8,17 +8,24 @@
 
 #import "Player.h"
 
+#define PLAYER_ROTATION_SPEED 15
 
 @implementation Player
 
-- (id)init{
-	if((self=[super init])){
-		self = [CCSprite spriteWithFile:@"playerPlane.png"];
-		}
-	return self;
+-(void)leftButtonPressed{
+	playerRotation = -PLAYER_ROTATION_SPEED;
 }
 
--(void)leftButtonPressed{
+-(void)rightButtonPressed{
+	playerRotation = PLAYER_ROTATION_SPEED;
+}
+
+-(void)directionButtonReleased{
+	playerRotation = 0;
+}
+
+-(void)update:(NSTimeInterval)delta {
+	
 }
 
 @end
