@@ -11,11 +11,16 @@
 
 @interface Player : CCSprite {
 	float playerRotation;
+	bool thrustersOn,dead;
+	double Vx,Vy;
 }
 
 -(void)leftButtonPressed;
 -(void)rightButtonPressed;
 -(void)directionButtonReleased;
+
+-(void)thrusterPressed;
+-(void)thrusterReleased;
 
 -(void)update:(ccTime)delta;
 
