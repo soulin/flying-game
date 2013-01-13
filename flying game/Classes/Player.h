@@ -17,6 +17,6 @@
 -(void)rightButtonPressed;
 -(void)directionButtonReleased;
 
--(void)update:(NSTimeInterval)delta;
+-(void)update:(ccTime)delta;
 
 @end

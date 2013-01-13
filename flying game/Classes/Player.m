@@ -8,7 +8,7 @@
 
 #import "Player.h"
 
-#define PLAYER_ROTATION_SPEED 15
+#define PLAYER_ROTATION_SPEED 120
 
 @implementation Player
 
@@ -24,8 +24,8 @@
 	playerRotation = 0;
 }
 
--(void)update:(NSTimeInterval)delta {
-	
+-(void)update:(ccTime)delta {
+	[self setRotation:self.rotation+playerRotation*delta];
 }
 
 @end

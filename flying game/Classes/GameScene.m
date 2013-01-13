@@ -37,24 +37,32 @@
 		CCSprite * background = [CCSprite spriteWithFile:@"background.png"];
 		[self addChild:background z:-1];
 		
-		Player * thePlayer = [Player spriteWithFile:@"playerPlane.png"];
-		[self addChild:thePlayer z:0];
+		player = [Player spriteWithFile:@"playerPlane.png"];
+		[self addChild:player z:0];
 		CGSize windowSize = [[CCDirector sharedDirector] winSize];
-		[thePlayer setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
+		[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
 		
-		HUDbutton * left = [HUDbutton itemFromNormalImage:@"leftOn.png" selectedImage:@"left.png" target:thePlayer selector:@selector(leftButtonPressed)];
-		HUDbutton * right = [HUDbutton itemFromNormalImage:@"rightOn.png" selectedImage:@"right.png" target:thePlayer selector:@selector(rightButtonPressed)];
-		
-		//NSInvocation releaseInvocation = [NSInvocation i
-		
+		left = [HUDbutton itemFromNormalImage:@"leftOn.png" selectedImage:@"left.png" target:player selector:@selector(leftButtonPressed)];
+		right = [HUDbutton itemFromNormalImage:@"rightOn.png" selectedImage:@"right.png" target:player selector:@selector(rightButtonPressed)];
+		[left setPlayer:player];
+		[right setPlayer:player];
+		[left setDirection:@"left"];
+		[right setDirection:@"right"];
 		[left setPosition:CGPointMake(30, 40)];
-		[right setPosition:CGPointMake(100, 40)];
+		[right setPosition:CGPointMake(94, 40)];
 		
-		CCMenu * controls = [CCMenu menuWithItems:left,right,nil];
-		[controls setPosition:CGPointMake(25, 0)];
-		[self addChild:controls z:1];
+		menu = [CCMenu menuWithItems:left,right,nil];
+		[menu setIsTouchUp:YES];
+		[menu setPosition:CGPointMake(25, 0)];
+		[self addChild:menu z:1];
+		
+		[self schedule:@selector(gameLoop:) interval:1/60.0f];
 	}
 	return self;
+}
+
+- (void)gameLoop:(ccTime)delta{
+	[player update:delta];
 }
 
 // on "dealloc" you need to release all your retained objects

@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Player.h"
 
 @interface HUDbutton : CCMenuItemImage {
-	NSInvocation * releaseMethod;
+	Player * player;
+	NSString * direction;
 }
 
-@property(nonatomic,retain)NSInvocation * releaseMethod;
+@property(nonatomic,retain)Player * player;
+@property(nonatomic,retain)NSString * direction;
 
 @end

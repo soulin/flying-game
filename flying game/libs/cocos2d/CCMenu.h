@@ -42,6 +42,7 @@ typedef enum  {
  */
 @interface CCMenu : CCLayer <CCRGBAProtocol>
 {
+	BOOL isTouchUp;
 	MenuState state;
 	CCMenuItem *selectedItem;
 	GLubyte		opacity_;
@@ -82,5 +83,7 @@ typedef enum  {
 @property (nonatomic,readonly) GLubyte opacity;
 /** conforms to CCRGBAProtocol protocol */
 @property (nonatomic,readonly) ccColor3B color;
+
+@property (nonatomic,readwrite) BOOL isTouchUp;
 
 @end
