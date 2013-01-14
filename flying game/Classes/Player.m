@@ -11,11 +11,11 @@
 #define PLAYER_ROTATION_SPEED 120
 #define FALLING_PLAYER_ROTATION_SPEED 270
 
-#define PLAYER_MAX_SPEED  30
-#define PLAYER_ACCELERATION 15
-#define PLAYER_DRAG -5
+#define PLAYER_MAX_SPEED  5
+#define PLAYER_ACCELERATION .5
+#define PLAYER_DRAG  .995
 
-#define GRAVITY -5
+#define GRAVITY 0
 
 @implementation Player
 
@@ -39,22 +39,29 @@
 
 - (void)update:(ccTime)delta {
 	[self setRotation:self.rotation+playerRotation*delta];
+//	[self setRotation:self.rotation+FALLING_PLAYER_ROTATION_SPEED*delta];
 	
 	if (thrustersOn) {
-		Vx += PLAYER_ACCELERATION*cosf(self.rotation);
-		Vy += PLAYER_ACCELERATION*sinf(self.rotation);
-		if (Vx*Vx + Vy*Vy > 30) {
-			Vx = 30*cosf(self.rotation);
-			Vy = 30*sinf(self.rotation);
-		}
-		[self setPosition:CGPointMake(self.position.x+Vx, self.position.y+Vy)];
-	} else {
-		Vy += GRAVITY;
+		Vx += [self addForceWithMagnitude:-PLAYER_ACCELERATION andAngle:-self.rotation isX:TRUE];
+		Vy += [self addForceWithMagnitude:-PLAYER_ACCELERATION andAngle:-self.rotation isX:FALSE];
 		
-		Vx += PLAYER_DRAG*cosf(self.rotation);
-		Vy += PLAYER_DRAG*cosf(self.rotation);
+				
 	}
+	Vx = Vx * PLAYER_DRAG;
+	Vy = Vy * PLAYER_DRAG;
+	Vy += GRAVITY;
+	[self setPosition:CGPointMake(self.position.x+(int)Vx, self.position.y+(int)Vy)];
 
+}
+
+- (double)addForceWithMagnitude:(double)mag andAngle:(double)angle isX:(BOOL)x {
+	//convert angle to radians
+	angle = angle * (M_PI/180.0f);
+	
+	if(x)
+	return mag * cos(angle);	
+	
+	return mag * sin(angle);
 }
 
 - (void)thrusterPressed {

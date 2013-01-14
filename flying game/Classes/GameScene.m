@@ -9,6 +9,9 @@
 // Import the interfaces
 #import "GameScene.h"
 
+#define SCROLL_BUFFER_X 30
+#define SCROLL_BUFFER_Y 30
+
 
 // HelloWorld implementation
 @implementation GameScene
@@ -34,17 +37,27 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init] )) {
-		CCSprite * background = [CCSprite spriteWithFile:@"background.png"];
-		[self addChild:background z:-1];
+		gameLayer = [[CCLayer alloc] init];
+		HUDLayer = [[CCLayer alloc] init];
+		
+		background = [CCSprite spriteWithFile:@"background.png"];
+		background2 = [CCSprite spriteWithFile:@"background.png"];
+		
+		[gameLayer addChild:background z:-2];
+		[gameLayer addChild:background2 z:-1];
+		
+		currentBackground = 1;
+		[background setPosition:CGPointMake([[CCDirector sharedDirector] winSize].width/2, 0)];
+		[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width-1, background.position.y+2)];
 		
 		player = [Player spriteWithFile:@"playerPlane.png"];
-		[self addChild:player z:0];
+		[gameLayer addChild:player];
 		CGSize windowSize = [[CCDirector sharedDirector] winSize];
 		[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
 		
 		left = [HUDbutton itemFromNormalImage:@"leftOn.png" selectedImage:@"left.png" target:player selector:@selector(leftButtonPressed)];
 		right = [HUDbutton itemFromNormalImage:@"rightOn.png" selectedImage:@"right.png" target:player selector:@selector(rightButtonPressed)];
-		thruster = [HUDbutton itemFromNormalImage:@"Thrust.png" selectedImage:@"Thrust.png" target:player selector:@selector(thrusterPressed)];
+		thruster = [HUDbutton itemFromNormalImage:@"ThrustOn.png" selectedImage:@"Thrust.png" target:player selector:@selector(thrusterPressed)];
 		
 		[left setPlayer:player];
 		[right setPlayer:player];
@@ -56,10 +69,13 @@
 		[right setPosition:CGPointMake(94, 40)];
 		[thruster setPosition:CGPointMake(415, 40)];
 		
-		menu = [CCMenu menuWithItems:left,right,thruster,nil];
-		[menu setIsTouchUp:YES];
-		[menu setPosition:CGPointMake(25, 0)];
-		[self addChild:menu z:1];
+		CCMenu * directionalButtons = [CCMenu menuWithItems:left,right,thruster,nil];
+		[directionalButtons setIsTouchUp:YES];
+		[directionalButtons setPosition:CGPointMake(25, 0)];
+		[HUDLayer addChild:directionalButtons z:1];
+		
+		[self addChild:gameLayer z:0];
+		[self addChild:HUDLayer z:1];
 		
 		[self schedule:@selector(gameLoop:) interval:1/60.0f];
 	}
@@ -68,11 +84,51 @@
 
 - (void)gameLoop:(ccTime)delta{
 	[player update:delta];
+	[self scroll];
+	[self tileBackground];
+}
+
+- (void)tileBackground {
+	float playerXReletiveToBackground = player.position.x - background.position.x;
+
+	if (playerXReletiveToBackground > background.contentSize.width/2) {
+		[background setPosition:CGPointMake(background.position.x + background.contentSize.width - 1, background.position.y)];
+	}
+	if (playerXReletiveToBackground < -background.contentSize.width/2) {
+		[background setPosition:CGPointMake(background.position.x - background.contentSize.width, background.position.y)];
+	}
+	
+	
+	if (playerXReletiveToBackground > 0) {
+			[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width - 1, background.position.y)];
+	}
+	if (playerXReletiveToBackground < 0) {
+			[background2 setPosition:CGPointMake(background.position.x - background.contentSize.width + 20, background.position.y)];
+	}
+}
+
+- (void)scroll {
+	CGSize screenSize = [[CCDirector sharedDirector] winSize];
+	CGPoint playerPositionReletiveToScreen = CGPointMake(player.position.x + gameLayer.position.x, player.position.y + gameLayer.position.y);   
+	
+	if (playerPositionReletiveToScreen.y < screenSize.height/2 - SCROLL_BUFFER_Y) {
+		[gameLayer setPosition:CGPointMake(gameLayer.position.x, gameLayer.position.y + ((screenSize.height/2 - SCROLL_BUFFER_Y) - playerPositionReletiveToScreen.y))];
+	} else if (playerPositionReletiveToScreen.y > screenSize.height/2 + SCROLL_BUFFER_Y) {
+		[gameLayer setPosition:CGPointMake(gameLayer.position.x, gameLayer.position.y + ((screenSize.height/2 + SCROLL_BUFFER_Y) - playerPositionReletiveToScreen.y))];
+	}
+	
+	if (playerPositionReletiveToScreen.x < screenSize.width/2 - SCROLL_BUFFER_X) {
+		[gameLayer setPosition:CGPointMake(gameLayer.position.x + ((screenSize.width/2 - SCROLL_BUFFER_X) - playerPositionReletiveToScreen.x), gameLayer.position.y)];
+	} else if (playerPositionReletiveToScreen.x > screenSize.width/2 + SCROLL_BUFFER_X) {
+		[gameLayer setPosition:CGPointMake(gameLayer.position.x + ((screenSize.width/2 + SCROLL_BUFFER_X) - playerPositionReletiveToScreen.x), gameLayer.position.y)];
+	}
 }
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
+	[gameLayer release];
+	[HUDLayer release];
 	// in case you have something to dealloc, do it in this method
 	// in this particular example nothing needs to be released.
 	// cocos2d will automatically release all the children (Label)

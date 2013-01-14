@@ -24,4 +24,6 @@
 
 -(void)update:(ccTime)delta;
 
+- (double)addForceWithMagnitude:(double)mag andAngle:(double)angle isX:(BOOL)x;
+
 @end

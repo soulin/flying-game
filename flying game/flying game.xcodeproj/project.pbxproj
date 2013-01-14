@@ -10,6 +10,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F3B9A2D0EF2145700286867 /* flying_gameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3B9A2B0EF2145700286867 /* flying_gameAppDelegate.m */; };
 		343D378D16A33F2200755D01 /* Thrust.png in Resources */ = {isa = PBXBuildFile; fileRef = 343D378C16A33F2200755D01 /* Thrust.png */; };
+		343D379116A36CCA00755D01 /* ThrustOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 343D379016A36CCA00755D01 /* ThrustOn.png */; };
 		34E1A5B916A1DCBC00C524F8 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E1A5B816A1DCBC00C524F8 /* Player.m */; };
 		34E1A5C816A1E13800C524F8 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A5C616A1E13800C524F8 /* background.png */; };
 		34E1A5C916A1E13800C524F8 /* playerPlane.png in Resources */ = {isa = PBXBuildFile; fileRef = 34E1A5C716A1E13800C524F8 /* playerPlane.png */; };
@@ -251,6 +252,7 @@
 		1F3B9A820EF2151B00286867 /* flying_game_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flying_game_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		343D378C16A33F2200755D01 /* Thrust.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thrust.png; sourceTree = "<group>"; };
+		343D379016A36CCA00755D01 /* ThrustOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThrustOn.png; sourceTree = "<group>"; };
 		34E1A5B716A1DCBC00C524F8 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		34E1A5B816A1DCBC00C524F8 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		34E1A5C616A1E13800C524F8 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
@@ -846,6 +848,7 @@
 			isa = PBXGroup;
 			children = (
 				343D378C16A33F2200755D01 /* Thrust.png */,
+				343D379016A36CCA00755D01 /* ThrustOn.png */,
 				34E1A5C616A1E13800C524F8 /* background.png */,
 				34E1A5C716A1E13800C524F8 /* playerPlane.png */,
 				50F414EC1069373D002A0D5E /* Default.png */,
@@ -1051,6 +1054,7 @@
 				34E1A66216A1EE5C00C524F8 /* right.png in Resources */,
 				34E1A66316A1EE5C00C524F8 /* rightOn.png in Resources */,
 				343D378D16A33F2200755D01 /* Thrust.png in Resources */,
+				343D379116A36CCA00755D01 /* ThrustOn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,15 +15,24 @@
 // HelloWorld Layer
 @interface GameScene : CCLayer
 {
+	CCLayer * HUDLayer;
+	CCLayer * gameLayer;
+	
+	int currentBackground;
+	CCSprite * background;
+	CCSprite * background2;
+	
 	Player * player;
 	HUDbutton * left;
 	HUDbutton * right;
 	HUDbutton * thruster;
-	CCMenu * menu;
+	
 }
 
 // returns a Scene that contains the HelloWorld as the only child
 +(id) scene;
 
+- (void)tileBackground;
 - (void)gameLoop:(ccTime)delta;
+- (void)scroll;
 @end
