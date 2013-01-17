@@ -50,7 +50,7 @@
 	Vx = Vx * PLAYER_DRAG;
 	Vy = Vy * PLAYER_DRAG;
 	Vy += GRAVITY;
-	[self setPosition:CGPointMake(self.position.x+(int)Vx, self.position.y+(int)Vy)];
+	[self setPosition:CGPointMake(self.position.x+Vx, self.position.y+Vy)];
 
 }
 

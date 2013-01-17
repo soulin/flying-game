@@ -45,8 +45,7 @@
 		
 		[gameLayer addChild:background z:-2];
 		[gameLayer addChild:background2 z:-1];
-		
-		currentBackground = 1;
+
 		[background setPosition:CGPointMake([[CCDirector sharedDirector] winSize].width/2, 0)];
 		[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width-1, background.position.y+2)];
 		
@@ -88,23 +87,21 @@
 	[self tileBackground];
 }
 
-- (void)tileBackground {
-	float playerXReletiveToBackground = player.position.x - background.position.x;
+-(void)tileBackground {
+	// If background 1 is off of screen
+	if (player.position.x - background.position.x < 0 - background.contentSize.width/2 || player.position.x - background.position.x > background.contentSize.width/2) {
+		//replace background 2 with background 1
+		[background setPosition:CGPointMake(background2.position.x,background2.position.y)];
+		}
+	// If player is on left side of background
+	if (player.position.x < background.position.x - 32) {
+		//move background 2 to the left side of background 1
+		[background2 setPosition:CGPointMake(background.position.x - background.contentSize.width + 1, background.position.y)];
+	}  else	if (player.position.x > background.position.x + 32) { //if player is on right side of background 1
+		//move background 2 to the right side of background one
+		[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width - 1, background.position.y)];
+	}
 
-	if (playerXReletiveToBackground > background.contentSize.width/2) {
-		[background setPosition:CGPointMake(background.position.x + background.contentSize.width - 1, background.position.y)];
-	}
-	if (playerXReletiveToBackground < -background.contentSize.width/2) {
-		[background setPosition:CGPointMake(background.position.x - background.contentSize.width, background.position.y)];
-	}
-	
-	
-	if (playerXReletiveToBackground > 0) {
-			[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width - 1, background.position.y)];
-	}
-	if (playerXReletiveToBackground < 0) {
-			[background2 setPosition:CGPointMake(background.position.x - background.contentSize.width + 20, background.position.y)];
-	}
 }
 
 - (void)scroll {
