@@ -11,12 +11,12 @@
 #define PLAYER_ROTATION_SPEED 120
 #define FALLING_PLAYER_ROTATION_SPEED 270
 
-#define PLAYER_MAX_SPEED  5
+#define PLAYER_MAX_SPEED  15
 #define PLAYER_ACCELERATION .5
-#define PLAYER_DRAG  .995
+#define PLAYER_DRAG  .99
 
-#define GRAVITY 0
-
+#define GRAVITY_WITH_THRUSTERS -.03
+#define GRAVITY_WITHOUT_THRUSTERS -.2
 @implementation Player
 
 - (void)leftButtonPressed{
@@ -39,17 +39,33 @@
 
 - (void)update:(ccTime)delta {
 	[self setRotation:self.rotation+playerRotation*delta];
-//	[self setRotation:self.rotation+FALLING_PLAYER_ROTATION_SPEED*delta];
 	
+	//add engine pushy stuff
 	if (thrustersOn) {
 		Vx += [self addForceWithMagnitude:-PLAYER_ACCELERATION andAngle:-self.rotation isX:TRUE];
 		Vy += [self addForceWithMagnitude:-PLAYER_ACCELERATION andAngle:-self.rotation isX:FALSE];
-		
-				
+		Vy += GRAVITY_WITH_THRUSTERS;
+	} else {
+		Vy += GRAVITY_WITHOUT_THRUSTERS;
 	}
+
+	//drag + gravity = LAME
 	Vx = Vx * PLAYER_DRAG;
 	Vy = Vy * PLAYER_DRAG;
-	Vy += GRAVITY;
+	
+	
+	//CONFORM to the max speed(adversity)
+	if (Vx > PLAYER_MAX_SPEED) {
+		Vx = PLAYER_MAX_SPEED;
+	} else if (Vx < -PLAYER_MAX_SPEED) {
+		Vx = -PLAYER_MAX_SPEED;
+	}
+	if (Vy > PLAYER_MAX_SPEED) {
+		Vy = PLAYER_MAX_SPEED;
+	} else if (Vy < -PLAYER_MAX_SPEED) {
+		Vy = -PLAYER_MAX_SPEED;
+	}
+	
 	[self setPosition:CGPointMake(self.position.x+Vx, self.position.y+Vy)];
 
 }

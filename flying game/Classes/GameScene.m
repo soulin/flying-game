@@ -37,52 +37,86 @@
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init] )) {
+		
+		//setup gamelayer (where all the planes and bullets and backgrounds go cuz it scrolls)
 		gameLayer = [[CCLayer alloc] init];
-		HUDLayer = [[CCLayer alloc] init];
-		
-		background = [CCSprite spriteWithFile:@"background.png"];
-		background2 = [CCSprite spriteWithFile:@"background.png"];
-		
-		[gameLayer addChild:background z:-2];
-		[gameLayer addChild:background2 z:-1];
-
-		[background setPosition:CGPointMake([[CCDirector sharedDirector] winSize].width/2, 0)];
-		[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width-1, background.position.y+2)];
-		
-		player = [Player spriteWithFile:@"playerPlane.png"];
-		[gameLayer addChild:player];
-		CGSize windowSize = [[CCDirector sharedDirector] winSize];
-		[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
-		
-		left = [HUDbutton itemFromNormalImage:@"leftOn.png" selectedImage:@"left.png" target:player selector:@selector(leftButtonPressed)];
-		right = [HUDbutton itemFromNormalImage:@"rightOn.png" selectedImage:@"right.png" target:player selector:@selector(rightButtonPressed)];
-		thruster = [HUDbutton itemFromNormalImage:@"ThrustOn.png" selectedImage:@"Thrust.png" target:player selector:@selector(thrusterPressed)];
-		
-		[left setPlayer:player];
-		[right setPlayer:player];
-		[thruster setPlayer:player];
-		[left setDirection:@"left"];
-		[right setDirection:@"right"];
-		[thruster setDirection:@"thruster"];
-		[left setPosition:CGPointMake(30, 40)];
-		[right setPosition:CGPointMake(94, 40)];
-		[thruster setPosition:CGPointMake(415, 40)];
-		
-		CCMenu * directionalButtons = [CCMenu menuWithItems:left,right,thruster,nil];
-		[directionalButtons setIsTouchUp:YES];
-		[directionalButtons setPosition:CGPointMake(25, 0)];
-		[HUDLayer addChild:directionalButtons z:1];
-		
 		[self addChild:gameLayer z:0];
-		[self addChild:HUDLayer z:1];
 		
+		//Initialize the array that will hold all the enemies
+		enemies = [[NSMutableArray alloc] init];
+		
+		//add the background
+		[self setupBackground];
+		
+		//add the player
+		[self addPlayer];
+		
+		//make the HUD
+		[self buildHUD];
+		
+		//#####################TESTING#####################
+		EnemyFighter * baaaddDude = [EnemyFighter spriteWithFile:@"ship0001.png"];
+		[baaaddDude setPosition:CGPointMake(200, 300)];
+		[baaaddDude setTarget:player];
+		[enemies addObject:baaaddDude];
+		[gameLayer addChild:baaaddDude];
+		
+		//start the gameloop
 		[self schedule:@selector(gameLoop:) interval:1/60.0f];
 	}
 	return self;
 }
 
+- (void)setupBackground {
+	background = [CCSprite spriteWithFile:@"background.png"];
+	background2 = [CCSprite spriteWithFile:@"background.png"];
+	
+	[gameLayer addChild:background z:-2];
+	[gameLayer addChild:background2 z:-1];
+	
+	[background setPosition:CGPointMake([[CCDirector sharedDirector] winSize].width/2, 0)];
+	[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width-1, background.position.y+2)];
+}
+
+- (void)addPlayer {
+	player = [Player spriteWithFile:@"playerPlane.png"];
+	[gameLayer addChild:player];
+	CGSize windowSize = [[CCDirector sharedDirector] winSize];
+	[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
+}
+
+- (void)buildHUD {
+	HUDLayer = [[CCLayer alloc] init];
+	
+	left = [HUDbutton itemFromNormalImage:@"leftOn.png" selectedImage:@"left.png" target:player selector:@selector(leftButtonPressed)];
+	right = [HUDbutton itemFromNormalImage:@"rightOn.png" selectedImage:@"right.png" target:player selector:@selector(rightButtonPressed)];
+	thruster = [HUDbutton itemFromNormalImage:@"ThrustOn.png" selectedImage:@"Thrust.png" target:player selector:@selector(thrusterPressed)];
+	
+	[left setPlayer:player];
+	[right setPlayer:player];
+	[thruster setPlayer:player];
+	[left setDirection:@"left"];
+	[right setDirection:@"right"];
+	[thruster setDirection:@"thruster"];
+	[left setPosition:CGPointMake(30, 40)];
+	[right setPosition:CGPointMake(94, 40)];
+	[thruster setPosition:CGPointMake(415, 40)];
+	
+	CCMenu * directionalButtons = [CCMenu menuWithItems:left,right,thruster,nil];
+	[directionalButtons setIsTouchUp:YES];
+	[directionalButtons setPosition:CGPointMake(25, 0)];
+	[HUDLayer addChild:directionalButtons z:1];
+	
+	[self addChild:HUDLayer z:1];
+}
+
 - (void)gameLoop:(ccTime)delta{
 	[player update:delta];
+	
+	for(EnemyFighter * enemyFighter in enemies){
+		[enemyFighter update:delta];
+	}
+	
 	[self scroll];
 	[self tileBackground];
 }
@@ -119,6 +153,12 @@
 	} else if (playerPositionReletiveToScreen.x > screenSize.width/2 + SCROLL_BUFFER_X) {
 		[gameLayer setPosition:CGPointMake(gameLayer.position.x + ((screenSize.width/2 + SCROLL_BUFFER_X) - playerPositionReletiveToScreen.x), gameLayer.position.y)];
 	}
+}
+
+- (void)addEnemyFighterWithPosition:(CGPoint)pos {
+	EnemyFighter * enemy = [CCSprite spriteWithFile:@"Ship0001.png"];
+	[gameLayer addChild:enemy];
+	[enemy setPosition:pos];
 }
 
 // on "dealloc" you need to release all your retained objects

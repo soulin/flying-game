@@ -11,6 +11,7 @@
 #import "cocos2d.h"
 #import "Player.h"
 #import "HUDbutton.h"
+#import "EnemyFighter.h"
 
 // HelloWorld Layer
 @interface GameScene : CCLayer
@@ -27,11 +28,15 @@
 	HUDbutton * right;
 	HUDbutton * thruster;
 	
+	NSMutableArray * enemies;
 }
 
 // returns a Scene that contains the HelloWorld as the only child
 +(id) scene;
 
+- (void)addPlayer;
+- (void)buildHUD;
+- (void)setupBackground;
 - (void)tileBackground;
 - (void)gameLoop:(ccTime)delta;
 - (void)scroll;
