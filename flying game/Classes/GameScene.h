@@ -12,6 +12,7 @@
 #import "Player.h"
 #import "HUDbutton.h"
 #import "EnemyFighter.h"
+#import "Bullet.h"
 
 // HelloWorld Layer
 @interface GameScene : CCLayer
@@ -29,6 +30,7 @@
 	HUDbutton * thruster;
 	
 	NSMutableArray * enemies;
+	NSMutableArray * bullets;
 }
 
 // returns a Scene that contains the HelloWorld as the only child
@@ -40,4 +42,5 @@
 - (void)tileBackground;
 - (void)gameLoop:(ccTime)delta;
 - (void)scroll;
+- (void)addEnemyFighterWithPosition:(CGPoint)pos;
 @end

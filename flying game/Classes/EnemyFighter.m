@@ -15,8 +15,47 @@
 
 #define RATIO .05
 
+#define BULLETSPEED 20
+#define RELOADTIME
+
+#define MAXHEALTH 5
+
+CCCallFunc * die;
+CCAnimate * explosionAction;
+
 @implementation EnemyFighter
 @synthesize target;
+
+- (id)init {
+	if ((self = [super init])) {
+		[self setTeam:1];
+		[self setHealth:MAXHEALTH];
+		[self schedule:@selector(update:) interval:1/60.0f];
+		
+		CCSpriteSheet * sheet = [CCSpriteSheet spriteSheetWithFile:@"Explode.png"];
+		
+		[self addChild:sheet];
+		
+		NSMutableArray * explosionFrames = [NSMutableArray array];
+		
+		int spriteWidth = 256;
+		
+		for (int i = 0; i <= 6; i++) {
+			[explosionFrames addObject:[CCSprite spriteWithSpriteSheet:sheet rect:CGRectMake(i*spriteWidth, 0, spriteWidth, 100)]];
+		}
+		
+		CCAnimation * animation = [CCAnimation animationWithName:@"explode" delay:0.1f frames:explosionFrames];
+		
+		CCAnimate * explosion = [CCAnimate actionWithDuration:.5f animation:animation restoreOriginalFrame:NO];
+		
+		[self runAction:explosion];
+	}
+	return self;
+}
+
+- (void)die {
+	[super die];
+}
 
 - (void)update:(ccTime)delta{
 	//aim at thine enemy
@@ -43,7 +82,7 @@
 		} else {
 			rotationToHappen += TURNSPEED*[self signOfInteger:difference];
 		}
-
+		
 	}
 	
 	//make sure it slows down when it gets too close
@@ -62,6 +101,13 @@
 	
 	[self setPosition:CGPointMake(self.position.x+Vx, self.position.y+Vy)];
 	
+}
+
+- (void)shoot {
+	Bullet * bullet = [Bullet newBulletWithVelocity:BULLETSPEED andDirection:self.rotation];
+	[bullet setPosition:CGPointMake(self.position.x, self.position.y)];
+	[bullet setTeam:1];
+	[self.parent addChild: bullet];
 }
 
 - (int)signOfInteger:(int)integer {

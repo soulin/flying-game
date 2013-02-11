@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Bullet.h"
+#import "Ship.h"
 
-@interface EnemyFighter : CCSprite {
+@interface EnemyFighter : Ship {
 	double Vx, Vy;
 	double speed;
 	CCNode * target;
@@ -19,4 +21,5 @@
 - (double)addForceWithMagnitude:(double)mag andAngle:(double)angle isX:(BOOL)x;
 -(void)update:(ccTime)delta;
 - (int)signOfInteger:(int)integer;
+- (void)shoot;
 @end

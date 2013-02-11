@@ -32,8 +32,7 @@
 }
 
 // on "init" you need to initialize your instance
--(id) init
-{
+-(id) init {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init] )) {
@@ -41,9 +40,6 @@
 		//setup gamelayer (where all the planes and bullets and backgrounds go cuz it scrolls)
 		gameLayer = [[CCLayer alloc] init];
 		[self addChild:gameLayer z:0];
-		
-		//Initialize the array that will hold all the enemies
-		enemies = [[NSMutableArray alloc] init];
 		
 		//add the background
 		[self setupBackground];
@@ -58,14 +54,39 @@
 		EnemyFighter * baaaddDude = [EnemyFighter spriteWithFile:@"ship0001.png"];
 		[baaaddDude setPosition:CGPointMake(200, 300)];
 		[baaaddDude setTarget:player];
-		[enemies addObject:baaaddDude];
 		[gameLayer addChild:baaaddDude];
+		
+		EnemyFighter * baaaddDude3 = [EnemyFighter spriteWithFile:@"ship0001.png"];
+		[baaaddDude3 setPosition:CGPointMake(300, 300)];
+		[baaaddDude3 setTarget:player];
+		[gameLayer addChild:baaaddDude3];
+		
+		EnemyFighter * baaaddDude4 = [EnemyFighter spriteWithFile:@"ship0001.png"];
+		[baaaddDude4 setPosition:CGPointMake(100, 300)];
+		[baaaddDude4 setTarget:player];
+		[gameLayer addChild:baaaddDude4];
+		
+		EnemyFighter * baaaddDude1 = [EnemyFighter spriteWithFile:@"ship0001.png"];
+		[baaaddDude1 setPosition:CGPointMake(0, 300)];
+		[baaaddDude1 setTarget:player];
+		[gameLayer addChild:baaaddDude1];
+		
+		EnemyFighter * baaaddDude2 = [EnemyFighter spriteWithFile:@"ship0001.png"];
+		[baaaddDude2 setPosition:CGPointMake(400, 300)];
+		[baaaddDude2 setTarget:player];
+		[gameLayer addChild:baaaddDude2];
+		//####################NO LONGER TESTING##########################
 		
 		//start the gameloop
 		[self schedule:@selector(gameLoop:) interval:1/60.0f];
 	}
 	return self;
 }
+
+- (void)gameLoop:(ccTime)delta{
+	[self scroll];
+	[self tileBackground];
+}	
 
 - (void)setupBackground {
 	background = [CCSprite spriteWithFile:@"background.png"];
@@ -76,13 +97,6 @@
 	
 	[background setPosition:CGPointMake([[CCDirector sharedDirector] winSize].width/2, 0)];
 	[background2 setPosition:CGPointMake(background.position.x + background.contentSize.width-1, background.position.y+2)];
-}
-
-- (void)addPlayer {
-	player = [Player spriteWithFile:@"playerPlane.png"];
-	[gameLayer addChild:player];
-	CGSize windowSize = [[CCDirector sharedDirector] winSize];
-	[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
 }
 
 - (void)buildHUD {
@@ -110,15 +124,15 @@
 	[self addChild:HUDLayer z:1];
 }
 
-- (void)gameLoop:(ccTime)delta{
-	[player update:delta];
-	
-	for(EnemyFighter * enemyFighter in enemies){
-		[enemyFighter update:delta];
-	}
-	
-	[self scroll];
-	[self tileBackground];
+- (void)spawnEnemyFighter {
+	[self addEnemyFighterWithPosition:CGPointMake(player.position.x+background.contentSize.width, 0)];
+}
+
+- (void)addPlayer {
+	player = [Player spriteWithFile:@"playerPlane.png"];
+	[gameLayer addChild:player];
+	CGSize windowSize = [[CCDirector sharedDirector] winSize];
+	[player setPosition:CGPointMake(windowSize.width/2, windowSize.height/2)];
 }
 
 -(void)tileBackground {
@@ -162,8 +176,7 @@
 }
 
 // on "dealloc" you need to release all your retained objects
-- (void) dealloc
-{
+- (void) dealloc {
 	[gameLayer release];
 	[HUDLayer release];
 	// in case you have something to dealloc, do it in this method
